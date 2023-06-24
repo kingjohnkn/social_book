@@ -13,4 +13,4 @@ class PostListView(View):
             "post_list": posts,
         }
 
-        return render(request, "social/post_list.html", context)
+        return render(request, "core/post_list.html", context)
