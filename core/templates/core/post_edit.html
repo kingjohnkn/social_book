@@ -1,32 +1,31 @@
-{% extends "landing/base.html" %}
-{% load crispy_forms_tags %}
+{% extends "landing/base.html" %} 
+{% load crispy_forms_tags %} 
 
 {% block content %}
 <div class="container">
   <div class="row mt-5">
     <div class="col-md-5 col-sm-6">
-      <a href="{% url 'post-list' %}" class="btn btn-light">Back To Feed</a>
+      <a href="{% url 'post-detail' object.pk %}" class="btn btn-light"
+        >Back To Post</a
+      >
     </div>
   </div>
 
   <div class="row justify-content-center mt-3">
     <div class="col-md-5 col-sm-12 border-bottom">
-      <p><strong>{{ post.author }} </strong>{{ post.created_on }}</p>
-      <p>{{ post.body }}</p>
+      <h5>Update Your Post!</h5>
     </div>
   </div>
 
   <div class="row justify-content-center mt-3">
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-5 col-sm-12 border-bottom">
       <form action="" method="POST">
-        {% csrf_token %}
-        {{ form | crispy }}
+        {% csrf_token %} {{ form | crispy }}
         <div class="d-grid gap-2">
           <button class="btn btn-success mb-3">Submit!</button>
         </div>
       </form>
     </div>
   </div>
-
 </div>
 {% endblock content%}

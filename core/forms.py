@@ -17,6 +17,7 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ["body"]
 
+
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(
         label="",

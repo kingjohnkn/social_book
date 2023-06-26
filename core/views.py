@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import UpdateView, DeleteView
 
 from .models import Post
 from .forms import PostForm, CommentForm
@@ -46,3 +48,19 @@ class PostDetailView(View):
         }
 
         return render(request, "core/post_detail.html", context)
+
+
+class PostEditView(UpdateView):
+    model = Post
+    fields = ["body"]
+    template_name = "core/post_edit.html"
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse_lazy("post-detail", kwargs={"pk": pk})
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = "core/post_delete.html"
+    success_url = reverse_lazy("post-list")
